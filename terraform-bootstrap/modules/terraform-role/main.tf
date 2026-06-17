@@ -22,3 +22,4 @@ resource "aws_iam_role_policy_attachment" "Terraform-execution-role-policy-attac
   role       = aws_iam_role.Terraform-execution-role_for_User.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
+

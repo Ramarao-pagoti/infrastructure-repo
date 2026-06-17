@@ -1,4 +1,4 @@
-variable "user_arn" {
+variable "trusted_principal_arn" {
   description = "This is for terraform execution role for deployments"
   type = string
 }
