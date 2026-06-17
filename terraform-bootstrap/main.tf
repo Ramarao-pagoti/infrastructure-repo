@@ -5,7 +5,7 @@ module "s3_backend" {
 
 module "terraform-role" {
   source    = "./modules/terraform-role"
-  user_arn  = "arn:aws:iam::030179310796:user/ramarao"
+  trusted_principal_arn = "arn:aws:iam::030179310796:user/ramarao"
   role_name = "Terraform-execution-role"
 }
 
