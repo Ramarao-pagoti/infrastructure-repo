@@ -13,7 +13,6 @@ output "private_app_subnet_ids" {
   value       = values(aws_subnet.private_app)[*].id
 }
 
-}
 
 output "private_db_subnet_ids" {
   description = "The IDs of the private database subnets"
