@@ -96,7 +96,7 @@ depends_on = [aws_internet_gateway.this]
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.this
+  vpc_id = aws_vpc.this.id
   
   tags = merge(
 
@@ -119,7 +119,7 @@ resource "aws_route_table_association" "public" {
 }
 
 resource "aws_route_table" "private_app" {
-  vpc_id = aws_vpc.this
+  vpc_id = aws_vpc.this.id
   
   tags = merge(
     local.common_tags,
@@ -141,7 +141,7 @@ resource "aws_route_table_association" "private_app" {
 }
 
 resource "aws_route_table" "private_db" {
-  vpc_id = aws_vpc.this
+  vpc_id = aws_vpc.this.id
   
   tags = merge(
     local.common_tags,
