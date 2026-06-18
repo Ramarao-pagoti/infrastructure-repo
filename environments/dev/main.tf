@@ -8,5 +8,5 @@ module "vpc" {
 module "security_group" {
   source = "../../modules/security-group"
   environment = "dev"
-  vpc_id = module.VPC.this.id
+  vpc_id = module.vpc.vpc_id
 }
