@@ -1,4 +1,4 @@
-resource "aws_vpc" "main_project_vpc" {
+resource "aws_vpc" "this" {
   cidr_block = var.vpc_cidr
   enable_dns_support   = true
   enable_dns_hostnames = true
@@ -13,7 +13,7 @@ resource "aws_vpc" "main_project_vpc" {
 
 resource "aws_subnet" "public" {
     for_each = local.public_subnets
-    vpc_id            = aws_vpc.main_project_vpc.id
+    vpc_id            = aws_vpc.this.id
     cidr_block        = cidrsubnet(var.vpc_cidr, 8, each.value.subnet_num)
     availability_zone = each.value.az
     map_public_ip_on_launch = true
