@@ -10,3 +10,11 @@ module "security_group" {
   environment = "dev"
   vpc_id = module.vpc.vpc_id
 }
+
+module "alb" {
+  source = "../../modules/alb"
+  environment = "dev"
+  vpc_id = module.vpc.vpc_id
+  public_subnet_ids = module.vpc.public_subnet_ids
+  alb_sg_id = module.security_group.alb_sg_id
+}
