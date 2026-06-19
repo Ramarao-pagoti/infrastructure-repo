@@ -15,3 +15,8 @@ module "ecr" {
   environment = var.environment
   repositories = var.repositories  
 }
+
+module "eks" {
+  source = "../../modules/iam"
+  environment = var.environment
+}
