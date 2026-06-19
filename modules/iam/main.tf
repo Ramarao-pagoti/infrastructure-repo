@@ -118,6 +118,6 @@ resource "aws_iam_policy" "alb_controller" {
 }
 
 resource "aws_iam_role_policy_attachment" "alb_controller" {
-    policy_arn = aws_iam_policy.alb_controller
+    policy_arn = aws_iam_policy.alb_controller.arn
     role = aws_iam_policy.alb_controller.name
 }
