@@ -162,3 +162,41 @@ resource "aws_iam_role_policy_attachment" "karpenter" {
   role = aws_iam_role.karpenter.name
   policy_arn = aws_iam_policy.karpenter_controller.arn
 }
+
+resource "aws_iam_role" "karpenter_node" {
+  name = "${var.environment}-karpenter-node-role"
+  assume_role_policy = jsonencode(
+    {
+      Version = "2012-10-17"
+      Statement = [
+        {
+          Effect = "Allow"
+          Principal = {
+            Service = "ec2.amazonaws.com"
+          }
+
+          Action = "sts:AssumeRole"
+        }
+      ]
+
+
+    }
+  )
+  
+}
+
+resource "aws_iam_policy_attachment" "karpenter_worker" { 
+    name = aws_iam_role.karpenter_node.name
+    policy_arn = "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+}
+
+resource "aws_iam_policy_attachment" "karpenter_ecr" {
+  name = aws_iam_role.karpenter_node.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryPullOnly"
+}
+
+resource "aws_iam_policy_attachment" "karpenter_cni" {
+  name = aws_iam_role.karpenter_node.name
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"  
+  
+}
