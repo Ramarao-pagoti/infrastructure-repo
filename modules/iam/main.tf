@@ -202,7 +202,7 @@ resource "aws_iam_role_policy_attachment" "karpenter_cni" {
   
 }
 
-resource "aws_iam_role_policy_attachment" "karpenter_cni" {
+resource "aws_iam_role_policy_attachment" "karpenter_SSM" {
   role = aws_iam_role.karpenter_node.name
   policy_arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"  
   
