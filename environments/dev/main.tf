@@ -36,3 +36,10 @@ module "argocd" {
   source = "../../modules/argocd"
   cluster_name = module.eks.cluster_name  
 }
+
+resource "aws_ec2_tag" "karpenter_cluster_sg_discovery" {
+  resource_id = module.eks.cluster_security_group_id
+
+  key   = "karpenter.sh/discovery"
+  value = module.eks.cluster_name
+}
