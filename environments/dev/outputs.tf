@@ -6,10 +6,10 @@ output "cluster_endpoint" {
     value = module.eks.cluster_endpoint  
 }
 output "karpenter_controller_role_arn" {
-    value = module.iam.alb_controller_role_arn  
+    value = module.iam.karpenter_role_arn  
 }
 output "karpenter_node_role_arn" {
-    value = module.iam.eks_node_role_arn  
+    value = module.iam.karpenter_node_role_arn  
 }
 output "alb_controller_role_arn" {
     value = module.iam.alb_controller_role_arn 
