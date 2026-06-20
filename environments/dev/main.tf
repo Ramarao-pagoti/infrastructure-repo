@@ -31,3 +31,8 @@ module "eks" {
   cluster_role_arn = module.iam.eks_cluster_role_arn
   eks_node_sg_id = module.security-group.eks_nodes_sg_id
 }
+
+module "argocd" {
+  source = "../../modules/argocd"
+  cluster_name = module.eks.cluster_name  
+}
