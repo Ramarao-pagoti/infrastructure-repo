@@ -152,7 +152,7 @@ resource "aws_iam_role" "karpenter" {
   assume_role_policy = data.aws_iam_policy_document.karpenter_assume_role.json
 }
 
-resource "aws_iam_policy" "karpenter" {
+resource "aws_iam_policy" "karpenter_controller" {
   name = "${var.environment}-karpenter-policy"
   policy = file("${path.module}/karpenter-controller-policy.json")
   
@@ -160,5 +160,5 @@ resource "aws_iam_policy" "karpenter" {
 
 resource "aws_iam_role_policy_attachment" "karpenter" {
   role = aws_iam_role.karpenter.arn
-  policy_arn = aws_iam_policy.karpenter.arn
+  policy_arn = aws_iam_policy.karpenter_controller.arn
 }
