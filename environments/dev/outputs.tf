@@ -20,3 +20,11 @@ output "cluster_security_group_id" {
 output "karpenter_node_role_name" {
     value = module.iam.karpenter_node_role_name  
 }
+
+output "route53_nameservers" {
+  value = module.route53.route53_nameservers
+}
+
+output "route53_zone_id" {
+  value = module.route53.route53_zone_id
+}
