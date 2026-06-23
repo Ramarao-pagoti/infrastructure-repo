@@ -1,7 +1,7 @@
 resource "aws_route53_zone" "main" {
     name = var.domain_name
 
-    tages = {
+    tags = {
       Environment = var.environment
       ManagedBy = "Terraform"
     }
