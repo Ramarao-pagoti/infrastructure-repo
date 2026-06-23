@@ -1,5 +1,5 @@
 resource "aws_route53_zone" "main" {
-    name = "mybanking.shop"
+    name = var.domain_name
 
     tages = {
       Environment = var.environment
