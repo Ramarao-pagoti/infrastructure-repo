@@ -37,6 +37,8 @@ module "argocd" {
   cluster_name = module.eks.cluster_name  
 }
 
+
+
 resource "aws_ec2_tag" "karpenter_cluster_sg_discovery" {
   resource_id = module.eks.cluster_security_group_id
 
@@ -45,7 +47,7 @@ resource "aws_ec2_tag" "karpenter_cluster_sg_discovery" {
 }
 
 module "route53" {
-  source = "../../modules.route53"
+  source = "../../modules/route53"
   domain_name = "mybanking.shop"
   environment = var.environment
 
