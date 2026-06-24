@@ -32,8 +32,7 @@ resource "aws_iam_role" "github_actions" {
           }
 
           StringLike = {
-            "token.actions.githubusercontent.com:sub" =
-            "repo:Ramarao-pagoti/banking-apps:*"
+            "token.actions.githubusercontent.com:sub" = "repo:Ramarao-pagoti/banking-apps:*"
           }
         }
       }
