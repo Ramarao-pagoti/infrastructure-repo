@@ -29,3 +29,7 @@ output "karpenter_node_role_name" {
 output "external_dns_role_arn" {
   value = aws_iam_role.external_dns.arn
 }
+
+output "github_actions_role_arn" {
+  value = aws_iam_role.github_actions.arn
+}
