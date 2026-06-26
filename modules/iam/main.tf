@@ -290,3 +290,36 @@ resource "aws_iam_role_policy_attachment" "external_dns" {
   role       = aws_iam_role.external_dns.name
   policy_arn = aws_iam_policy.external_dns.arn
 }
+
+resource "aws_iam_role" "ebs_csi_driver" {
+  name = "dev-ebs-csi-role"
+
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [{
+      Effect = "Allow"
+
+      Principal = {
+        Federated = aws_iam_openid_connect_provider.eks.arn
+      }
+
+      Action = "sts:AssumeRoleWithWebIdentity"
+
+      Condition = {
+        StringEquals = {
+          "${replace(
+            aws_iam_openid_connect_provider.eks.url,
+            "https://",
+            ""
+          )}:sub" = "system:serviceaccount:kube-system:ebs-csi-controller-sa"
+        }
+      }
+    }]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ebs_csi" {
+  role       = aws_iam_role.ebs_csi_driver.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+}
