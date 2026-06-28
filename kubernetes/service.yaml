@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: app-service
+  name: nginx-net-svc
 spec:
   selector:
-    app: wrong-label
+    app: nginx-net
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: 8080
