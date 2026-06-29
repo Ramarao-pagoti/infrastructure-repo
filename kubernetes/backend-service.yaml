@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: readiness-prod
+  name: backend-service
+  namespace: networking-lab
 spec:
-  type: ClusterIP
   selector:
-    app: readiness-prod
+    app: backend
   ports:
   - port: 80
     targetPort: 80
