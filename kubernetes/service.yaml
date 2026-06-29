@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodeport-nginx
+  name: readiness-prod
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
-    app: nodeport-nginx
+    app: readiness-prod
   ports:
   - port: 80
     targetPort: 80
